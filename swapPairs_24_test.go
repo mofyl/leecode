@@ -1,6 +1,9 @@
 package main
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestSwapPairs(t *testing.T) {
 	h := &ListNode{}
@@ -10,7 +13,9 @@ func TestSwapPairs(t *testing.T) {
 	h1 = tailInsert(h1, 3)
 	h1 = tailInsert(h1, 4)
 
-	hN := swapPairs(h)
+	print(h)
+	fmt.Println("==============")
+	hN := swapPairs(h.Next)
 
 	print(hN)
 }
@@ -21,27 +26,25 @@ func swapPairs(head *ListNode) *ListNode {
 		return head
 	}
 
-	var p1, p2, p3 *ListNode
+	p := &ListNode{}
+	p.Next = head
 
-	p1 = head
-	p2 = head.Next
-	p3 = p2.Next
-	p2.Next = p1
-	p1.Next = p3
+	pre := p
+	cur := head
+	for cur != nil && cur.Next != nil {
 
-	for p3.Next != nil {
+		first := cur
+		secode := cur.Next
 
-		p1 = p3
-		p3 = p3.Next.Next
+		pre.Next = secode
+		first.Next = secode.Next
+		secode.Next = first
 
-		p1.Next.Next = p1
-		p2.Next = p1.Next
-		p1.Next = p3
-
-		p2 = p1
+		pre = first
+		cur = first.Next
 
 	}
 
-	return head
+	return p.Next
 
 }
