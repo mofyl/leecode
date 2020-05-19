@@ -4,10 +4,12 @@ import (
 	"bytes"
 	"fmt"
 	"math"
+	"testing"
 )
 
-func main5() {
-	str := "ac"
+func TestLP(t *testing.T) {
+	// str := "ac"
+	str := "babad"
 
 	fmt.Println(longestPalindrome(str))
 }
@@ -15,12 +17,12 @@ func main5() {
 func manacherStr(str string) string {
 	res := bytes.NewBuffer([]byte{})
 
-	// res.WriteString("$")
+	res.WriteString("^")
 	for i := 0; i < len(str); i++ {
 		res.WriteString("#")
 		res.WriteByte(str[i])
 	}
-	res.WriteString("#")
+	res.WriteString("#$")
 	return res.String()
 
 }
@@ -38,17 +40,17 @@ func longestPalindrome(str string) string {
 	p := make([]int, len(newStr))
 
 	maxRight := 0
-
+	// 当前回文中心
 	pos := 0
 	// 最大回文中心
 	resCenter := 0
 	// 最大回文半径
 	resLen := 0
 
-	for i := 0; i < newStrLen; i++ {
+	for i := 1; i < newStrLen-1; i++ {
 
 		if maxRight > i {
-			//
+			// 这里防止 右边界 大于i
 			p[i] = int(math.Min(float64(p[2*pos-i]), float64(maxRight-i)))
 		} else {
 			// 这里其实 用1 和 0 出来的结果一样，但是用1 可以在求回文半径的时候 少一些循环
@@ -62,10 +64,14 @@ func longestPalindrome(str string) string {
 			p[i] = 1
 		}
 		// 求回文半径
+		/*
+			这里每次去比较 i+p[i]  i-p[i] 位置的字符串是否相同
+				我们这里直接跳过上次比较的半径就好，因为已经比较过了 就不用在比较了
+		*/
 		for i-p[i] > 0 && i+p[i] < newStrLen && newStr[i+p[i]] == newStr[i-p[i]] {
 			p[i]++
 		}
-		// 当  当前回文半径 在当前元素的左边界之内的时候 maxRight 和 pos就会 增加
+		// 当  当前回文半径 在当前元素的右边界之外的时候 maxRight 和 pos就会 增加
 		if maxRight < i+p[i] {
 			maxRight = i + p[i]
 			pos = i
@@ -78,9 +84,9 @@ func longestPalindrome(str string) string {
 
 	}
 
-	left := (resCenter - resLen + 1) / 2
-	right := (resCenter + resLen) / 2
+	left := (resCenter - resLen) / 2
+	// right := (resCenter + resLen) / 2
 
-	return str[left:right]
+	return str[left : left+resLen-1]
 
 }

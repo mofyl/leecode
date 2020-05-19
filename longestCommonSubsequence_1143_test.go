@@ -72,10 +72,6 @@ func getCLS(text1, text2 string, bitmap [][]int) string {
 	len2 := len(text2)
 	res := ""
 
-	for i := 0; i < len1; i++ {
-
-	}
-
 	for i <= len1 && j <= len2 {
 
 		if text1[i-1] == text2[j-1] {

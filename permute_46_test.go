@@ -11,9 +11,9 @@ func TestPermute(t *testing.T) {
 	fmt.Println(permute(num))
 }
 
-func backtracePermute(idx int, curNum int, res *[][]int, builder *[]int, nums []int) {
+func backtracePermute(idx int, res *[][]int, builder *[]int, nums []int) {
 
-	if idx == len(nums)-1 {
+	if idx == len(nums) {
 		newBuilder := make([]int, len(*builder))
 		copy(newBuilder, *builder)
 		*res = append(*res, newBuilder)
@@ -22,25 +22,34 @@ func backtracePermute(idx int, curNum int, res *[][]int, builder *[]int, nums []
 	}
 
 	for i := 0; i < len(nums); i++ {
-		if curNum == nums[i] {
+
+		// 剪枝
+		if intContains(*builder, nums[i]) {
 			continue
 		}
+
 		*builder = append(*builder, nums[i])
-		backtracePermute(idx+1, nums[i], res, builder, nums)
+		backtracePermute(idx+1, res, builder, nums)
 		*builder = (*builder)[:len(*builder)-1]
 	}
 
+}
+
+func intContains(nums []int, num int) bool {
+
+	for i := 0; i < len(nums); i++ {
+		if nums[i] == num {
+			return true
+		}
+	}
+
+	return false
 }
 
 func permute(nums []int) [][]int {
 	res := make([][]int, 0)
 	builder := make([]int, 0, len(nums))
 
-	for i := 0; i < len(nums); i++ {
-		builder = append(builder, nums[i])
-		backtracePermute(0, nums[i], &res, &builder, nums)
-		builder = builder[:len(builder)-1]
-	}
-
+	backtracePermute(0, &res, &builder, nums)
 	return res
 }
