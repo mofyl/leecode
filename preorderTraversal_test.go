@@ -1,12 +1,12 @@
-package tree
+package main
 
 import "container/list"
 
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
+//type TreeNode struct {
+//	Val   int
+//	Left  *TreeNode
+//	Right *TreeNode
+//}
 
 //var ele = make([]int, 0)
 
