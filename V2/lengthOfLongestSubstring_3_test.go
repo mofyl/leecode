@@ -1,5 +1,7 @@
 package V2
 
+import "strings"
+
 func lengthOfLongestSubstring(s string) int {
 
 	resStr := ""
@@ -7,26 +9,24 @@ func lengthOfLongestSubstring(s string) int {
 	curLen := 0
 	maxLen := 0
 
-
-	for i := 0 ; i < len(s) ; i++{
+	for i := 0; i < len(s); i++ {
 
 		str := string(s[i])
-		for strings.Contains(resStr,str ){
+		for strings.Contains(resStr, str) {
 
 			if curLen > 0 {
-			resStr = resStr[1:curLen]
-			curLen--
+				resStr = resStr[1:curLen]
+				curLen--
 
 			}
 		}
 
-		resStr+= str
+		resStr += str
 		curLen++
 
-		if  maxLen < curLen {
+		if maxLen < curLen {
 			maxLen = curLen
 		}
-
 
 	}
 
