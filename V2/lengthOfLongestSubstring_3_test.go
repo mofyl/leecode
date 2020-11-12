@@ -17,7 +17,6 @@ func lengthOfLongestSubstring(s string) int {
 			if curLen > 0 {
 				resStr = resStr[1:curLen]
 				curLen--
-
 			}
 		}
 

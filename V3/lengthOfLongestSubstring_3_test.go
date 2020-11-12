@@ -2,6 +2,7 @@ package V3
 
 import (
 	"fmt"
+	"strings"
 	"testing"
 )
 
@@ -11,6 +12,27 @@ func TestLengthOfLongestSubstring(t *testing.T) {
 }
 
 func lengthOfLongestSubstring(s string) int {
+
+	resStr := ""
+	maxLen := 0
+	for i := 0; i < len(s); i++ {
+
+		tmp := string(s[i])
+		for strings.Contains(resStr, tmp) {
+			curLen := len(resStr)
+			if curLen > 0 {
+				resStr = resStr[1:curLen]
+			}
+		}
+		resStr += tmp
+	}
+	if len(resStr) > maxLen {
+		maxLen = len(resStr)
+	}
+	return maxLen
+}
+
+func lengthOfLongestSubstringDP(s string) int {
 	max := 0
 	dp := make([]int, len(s))
 	if len(s) == 1 {
