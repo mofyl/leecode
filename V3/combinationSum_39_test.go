@@ -16,17 +16,16 @@ func TestCombinationSum(t *testing.T) {
 
 func combinationSum(candidates []int, target int) [][]int {
 	res := make([][]int, 0, len(candidates))
-	tmp := make([]int, 0, 3)
-	combinationSumRecursion(candidates, 0, target, tmp, &res)
+	combinationSumRecursion(0, candidates, 0, target, []int{}, &res)
 
 	return res
 }
 
-func combinationSumRecursion(candidates []int, cur int, target int, tmp []int, res *[][]int) {
+func combinationSumRecursion(start int, candidates []int, cur int, target int, curUsed []int, res *[][]int) {
 
 	if cur == target {
-		t := make([]int, len(tmp))
-		copy(t, tmp)
+		t := make([]int, len(curUsed))
+		copy(t, curUsed)
 		*res = append(*res, t)
 		return
 	}
@@ -35,9 +34,10 @@ func combinationSumRecursion(candidates []int, cur int, target int, tmp []int, r
 		return
 	}
 
-	for i := 0; i < len(candidates); i++ {
-		tmp = append(tmp, candidates[i])
-		combinationSumRecursion(candidates[i:], cur+candidates[i], target, tmp, res)
-		tmp = tmp[:len(tmp)-1]
+	for i := start; i < len(candidates); i++ {
+		curUsed = append(curUsed, candidates[i])
+		// 这里是i 因为可以重复使用 用几次都可以
+		combinationSumRecursion(i, candidates, cur+candidates[i], target, curUsed, res)
+		curUsed = curUsed[:len(curUsed)-1]
 	}
 }

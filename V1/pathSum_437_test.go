@@ -3,43 +3,69 @@ package V1
 import (
 	"fmt"
 	"testing"
+	"unsafe"
 )
 
 func TestPathSum(t *testing.T) {
-
-	n1 := &TreeNode{Val: 5}
-	n2 := &TreeNode{Val: 4}
-	n3 := &TreeNode{Val: 8}
-	n4 := &TreeNode{Val: 11}
-	n5 := &TreeNode{Val: 13}
-	n6 := &TreeNode{Val: 4}
-	n7 := &TreeNode{Val: 7}
-	n8 := &TreeNode{Val: 2}
-	n9 := &TreeNode{Val: 5}
-	n10 := &TreeNode{Val: 1}
-
-	n1.Left = n2
-	n1.Right = n3
-
-	n2.Left = n4
-
-	n4.Left = n7
-	n4.Right = n8
-
-	n3.Left = n5
-	n3.Right = n6
-
-	n5.Left = n9
-	n5.Right = n10
-
-	res := pathSum(n1, 22)
 	//
-	fmt.Println(res)
+	//n1 := &TreeNode{Val: 5}
+	//n2 := &TreeNode{Val: 4}
+	//n3 := &TreeNode{Val: 8}
+	//n4 := &TreeNode{Val: 11}
+	//n5 := &TreeNode{Val: 13}
+	//n6 := &TreeNode{Val: 4}
+	//n7 := &TreeNode{Val: 7}
+	//n8 := &TreeNode{Val: 2}
+	//n9 := &TreeNode{Val: 5}
+	//n10 := &TreeNode{Val: 1}
+	//
+	//n1.Left = n2
+	//n1.Right = n3
+	//
+	//n2.Left = n4
+	//
+	//n4.Left = n7
+	//n4.Right = n8
+	//
+	//n3.Left = n5
+	//n3.Right = n6
+	//
+	//n5.Left = n9
+	//n5.Right = n10
+	//
+	//res := pathSum(n1, 22)
+	////
+	//fmt.Println(res)
 	//
 	//res := levelOrder(n1)
 	//
 	//fmt.Println(res)
+	//c := make([]int, 0, 2)
+	//TempFunc(c)
+	//fmt.Println(c)
+	//size := unsafe.Sizeof(0)
+	//head := unsafe.Pointer(&c)
+	//p := (*[2]int)(unsafe.Pointer(*(*uintptr)(head)))
+	//
+	//fmt.Println(head)
+	//fmt.Println(p)
+	//fmt.Println(*(*int)(unsafe.Pointer(uintptr(head) + size)))
+	//
 
+	m := make(map[string]struct{})
+	m["aaa"] = struct{}{}
+	fmt.Printf("main %v\n", unsafe.Pointer(&m))
+	TempMap(m)
+}
+
+func TempFunc(c []int) {
+	fmt.Printf("tempFunc %v", unsafe.Pointer(&c))
+	c = append(c, 3, 2, 1, 4)
+}
+
+func TempMap(m map[string]struct{}) {
+
+	fmt.Printf("tempFunc %v\n", unsafe.Pointer(&m))
 }
 
 var res = 0
