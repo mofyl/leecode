@@ -43,7 +43,7 @@ func firstMissingPositive(nums []int) int {
 		// 这里首先要保证 nums[i] > 0 若不满足 则表示 该数 是负数或0 则不用考虑
 		// 若是 nums[i] >= n 表示这个数 太大了 超出了范围 也不用考虑
 		//
-		if nums[i] > 0 && nums[i] < n && nums[nums[i]-1] != nums[i] {
+		for nums[i] > 0 && nums[i] < n && nums[nums[i]-1] != nums[i] {
 			tmp := nums[nums[i]-1]
 			nums[nums[i]-1] = nums[i]
 			nums[i] = tmp
@@ -53,7 +53,7 @@ func firstMissingPositive(nums []int) int {
 	// 找到位置后就直接遍历
 	for i := 0; i < n; i++ {
 		// 由于找位置的时候 是将 3 保存到 下标为2 的位置，所以这里的下标需要+1 才会等于原来的值
-		if nums[i] > 0 && nums[i] != i+1 {
+		if nums[i] != i+1 {
 			return i + 1
 		}
 	}
