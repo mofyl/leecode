@@ -38,11 +38,9 @@ func firstMissingPositive(nums []int) int {
 	n := len(nums)
 	// 先找位置
 	// 这里是将 nums[i] 位置上的数 移动到 nums[i]-1 位置上 eg: nums[i]=3 那么该数字就要移动到 下标为2的位置上
-	// 后面直接使用 i来判断，若该位置
 	for i := 0; i < len(nums); i++ {
 		// 这里首先要保证 nums[i] > 0 若不满足 则表示 该数 是负数或0 则不用考虑
 		// 若是 nums[i] >= n 表示这个数 太大了 超出了范围 也不用考虑
-		//
 		for nums[i] > 0 && nums[i] < n && nums[nums[i]-1] != nums[i] {
 			tmp := nums[nums[i]-1]
 			nums[nums[i]-1] = nums[i]
