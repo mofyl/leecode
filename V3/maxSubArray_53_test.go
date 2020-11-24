@@ -2,6 +2,7 @@ package V3
 
 import (
 	"fmt"
+	"math"
 	"testing"
 )
 
@@ -15,8 +16,13 @@ func TestMaxSubArray(t *testing.T) {
 
 func maxSubArray(nums []int) int {
 
+	if len(nums) == 1 {
+		return nums[0]
+	}
+
 	sum := 0
-	ans := 0
+	ans := math.MinInt16
+
 	for i := 0; i < len(nums); i++ {
 		if sum > 0 {
 			sum += nums[i]
