@@ -24,7 +24,7 @@ func middleNode(head *ListNode) *ListNode {
 	// 这里使用双指针法
 	/*
 		若是基数长度  那么slow 指向中点 fast 指向 最后一个节点
-		若是偶数长度  那么slow 指向右中点 fast指向 nil
+		若是偶数长度  那么slow 指向左中点 fast指向 nil
 	*/
 	fast := head.Next
 	slow := head

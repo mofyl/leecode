@@ -32,7 +32,9 @@ func AddNode(l *ListNode, val int) {
 }
 
 func PrintNode(l *ListNode) {
-
+	if l == nil {
+		fmt.Println("nil")
+	}
 	for l != nil {
 		fmt.Println(l.Val)
 		l = l.Next

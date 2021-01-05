@@ -1,8 +1,6 @@
 package list
 
 import (
-	"encoding/asn1"
-	"github.com/xwb1989/sqlparser"
 	"testing"
 )
 
@@ -13,7 +11,8 @@ func TestSortList(t *testing.T) {
 	AddNode(head, 1)
 	AddNode(head, 3)
 
-	res := sortList(head.Next)
+	//res := sortList(head.Next)
+	res := sortList_V2(head.Next)
 
 	PrintNode(res)
 }
@@ -75,8 +74,6 @@ func sortList_V2(head *ListNode) *ListNode {
 		return head
 	}
 
-	invt := 1
-
 	p := head
 	length := 0
 
@@ -85,17 +82,71 @@ func sortList_V2(head *ListNode) *ListNode {
 		length++
 	}
 
-	for invt < length {
+	// 由于要改第一个，所以增加一个newHead
+	newHead := &ListNode{}
+	newHead.Next = head
+	// 这里将head分割为 1,2,4,6,8
+	for invt := 1; invt < length; invt *= 2 {
 
-		count := 1
-		start := head
-		tail := head
+		prev := newHead
+		cur := newHead.Next
 
-		for count <= invt {
-			tail
-			count++
+		for cur != nil {
+			h1 := cur
+			h2 := getHead(cur, invt)
+			cur = getHead(h2, invt)
+
+			// 对 h1,h2 进行排序
+			mergeHead := merge_148(h1, h2)
+			prev.Next = mergeHead
+
+			// 移动prev 到 排序好 部分的末尾 由于 h1,h2之间都已经断开了，所以只需要判断prev.next != nil 就好了
+			for prev.Next != nil {
+				prev = prev.Next
+			}
 		}
 
 	}
+	return newHead.Next
+}
 
+func merge_148(h1, h2 *ListNode) *ListNode {
+
+	newHead := &ListNode{}
+	p := newHead
+	for h1 != nil && h2 != nil {
+
+		if h1.Val < h2.Val {
+			p.Next = h1
+			h1 = h1.Next
+		} else {
+			p.Next = h2
+			h2 = h2.Next
+		}
+		p = p.Next
+	}
+	if h1 != nil {
+		p.Next = h1
+	}
+	if h2 != nil {
+		p.Next = h2
+	}
+	return newHead.Next
+}
+
+// 返回 start 后 invt步的节点，并将 这两部分 分割
+func getHead(start *ListNode, invt int) *ListNode {
+	if start == nil {
+		return start
+	}
+	tail := start
+	// 由于这里要将 invt步后的节点和 start的末尾分割 所以要从1开始 让tail 指向 返回节点的前一个
+	for i := 1; i < invt && tail.Next != nil; i++ {
+		tail = tail.Next
+	}
+
+	next := tail.Next
+	tail.Next = nil
+
+	return next
 }
