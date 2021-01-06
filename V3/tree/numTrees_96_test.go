@@ -23,52 +23,23 @@ func TestNumTrees(t *testing.T) {
 
 func numTrees(n int) int {
 
-	if n < 1 {
-		return 0
-	}
-	var res int
-
-	nums := make([]int, n)
-
-	for i := 0; i < n; i++ {
-		nums[i] = i + 1
+	if n <= 1 {
+		return 1
 	}
 
-	for i := 0; i < len(nums); i++ {
-		root := &TreeNode{Val: nums[i]}
+	dp := make([]int, n+1)
+	// 这个是规定：0个节点就是一颗空树，空树也属于二叉树
 
-		newNum := append([]int{}, nums[:i]...)
-		newNum = append(newNum, nums[i+1:]...)
-		numTreesLoop(newNum, root, root, &res)
-	}
-	return res
-}
+	dp[0] = 1
+	dp[1] = 1
 
-func numTreesLoop(nums []int, root *TreeNode, curNode *TreeNode, res *int) {
+	for i := 2; i <= n; i++ {
 
-	if len(nums) == 0 {
-		*res++
-		node := inorderTraversal(root)
-		fmt.Println(node)
-		return
-	}
-
-	for i := 0; i < len(nums); i++ {
-		tmp := &TreeNode{
-			Val: nums[i],
+		for j := 1; j <= i; j++ {
+			dp[i] += dp[j-1] * dp[i-j]
 		}
-		newNum := append([]int{}, nums[:i]...)
-		newNum = append(newNum, nums[i+1:]...)
-		if tmp.Val > root.Val {
-			curNode.Right = tmp
-			numTreesLoop(newNum, root, curNode.Right, res)
-			curNode.Right = nil
-		} else {
-			curNode.Left = tmp
-			numTreesLoop(newNum, root, curNode.Left, res)
-			curNode.Left = nil
-		}
-
 	}
+
+	return dp[n]
 
 }
