@@ -8,8 +8,8 @@ import (
 
 func TestLongestPalindrome(t *testing.T) {
 
-	//s := "babad"
-	s := "ac"
+	s := "cbbd"
+	//s := "ac"
 
 	res := longestPalindrome(s)
 
@@ -34,26 +34,27 @@ func longestPalindrome(s string) string {
 		sNew.WriteByte(s[i])
 	}
 	sNew.WriteByte('#')
-	s = sNew.String()
-	res := ""
+	tmp := sNew.String()
+	start := 0
 	maxLen := 0
-	for i := 1; i < len(s); i++ {
-		curLen := findCenter(s, i)
+	for i := 1; i < len(tmp); i++ {
+
+		curLen := findCenter(tmp, i)
 
 		if maxLen < curLen {
-			maxLen = len(str)
-			res = str
+			maxLen = curLen
+			start = (i - maxLen) / 2
 		}
 	}
 
-	return res
+	return s[start : start+maxLen]
 }
 
 // 左边界和右边界
 func findCenter(s string, center int) int {
 
-	left := center + 1
-	right := center - 1
+	left := center - 1
+	right := center + 1
 	step := 0
 	for left >= 0 && right < len(s) && s[left] == s[right] {
 		left--
