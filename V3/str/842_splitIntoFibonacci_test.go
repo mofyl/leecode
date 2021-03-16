@@ -10,7 +10,8 @@ func TestSplitIntoFibonacci(t *testing.T) {
 
 	//res := splitIntoFibonacci("123456579")
 	res := splitIntoFibonacci("539834657215398346785398346991079669377161950407626991734534318677529701785098211336528511")
-	//res := splitIntoFibonacci("123")
+	//res := splitIntoFibonacci_v2("539834657215398346785398346991079669377161950407626991734534318677529701785098211336528511")
+	//res := splitIntoFibonacci("1101111")
 	fmt.Println(res)
 }
 
@@ -30,15 +31,10 @@ func splitIntoFibonacci(S string) []int {
 	return []int{}
 }
 
-// TODO 没做完
 func splitIntoFibonacciHelper(S string, start int, cur *[]int) bool {
 
-	if start == len(S) && len(*cur) > 2 {
-		return true
-	}
-
-	if S[start] == '0' {
-
+	if start == len(S) {
+		return len(*cur) > 2
 	}
 
 	num := 0
@@ -52,16 +48,11 @@ func splitIntoFibonacciHelper(S string, start int, cur *[]int) bool {
 
 		num = num*10 + int(S[i]-'0')
 
-		if num > math.MaxInt64 {
+		if num > math.MaxInt32 {
 			break
 		}
-
 		curLen := len(*cur)
-
-		if curLen > 0 && num < (*cur)[curLen-1] {
-			continue
-		}
-
+		// 这里是在剪枝，若 num 已经比 前两个数的和 大了，那么在进行也没有什么意义
 		if curLen >= 2 && num > (*cur)[curLen-1]+(*cur)[curLen-2] {
 			break
 		}
