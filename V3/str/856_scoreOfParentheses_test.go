@@ -1,27 +1,47 @@
 package str
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestScoreOfParentheses(t *testing.T) {
 
+	num := scoreOfParentheses("(()(()()))")
+	fmt.Println(num)
 }
 
 func scoreOfParentheses(S string) int {
 
-}
+	stack := make([]interface{}, 0, len(S))
 
-func scoreOfParenthesesHelper(S string, start int, prev uint8) int {
+	for i := 0; i < len(S); i++ {
 
-	if start == len(S) {
-		return 0
+		if S[i] == '(' {
+			stack = append(stack, '(')
+		} else {
+			// S[i]	== ')'
+			sum := 0
+			for stack[len(stack)-1] != '(' {
+				sum += stack[len(stack)-1].(int)
+				stack = stack[:len(stack)-1]
+			}
+
+			if sum == 0 {
+				// 表示栈顶是 '(', 此时应该:将栈顶元素pop，然后将1 放入栈中
+				stack[len(stack)-1] = 1
+			} else {
+				stack[len(stack)-1] = 2 * sum
+			}
+
+		}
+
 	}
 
-	if prev == '(' && S[start] == ')' {
-		return 1 + scoreOfParenthesesHelper(S, start+1, S[start])
-	} else if prev == '(' && S[start] == '(' {
-		return 2 * scoreOfParenthesesHelper(S, start+1, S[start])
-	} else if prev == ')' && S[start] == '(' {
-		return scoreOfParenthesesHelper(S, start+1, S[start])
+	sum := 0
+	for i := 0; i < len(stack); i++ {
+		sum += stack[i].(int)
 	}
 
+	return sum
 }
