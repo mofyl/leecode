@@ -89,7 +89,7 @@ func copyRandomList(head *Node) *Node {
 	}
 
 	p := head
-
+	// 在head的每个节点后面增加一个新的节点
 	for p != nil {
 
 		tmp := p.Next
@@ -104,7 +104,7 @@ func copyRandomList(head *Node) *Node {
 	}
 
 	p = head
-
+	// 将random 节点 复制给 新增的节点
 	for p != nil {
 		if p.Random != nil {
 			p.Next.Random = p.Random.Next
