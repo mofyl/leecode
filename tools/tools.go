@@ -24,3 +24,12 @@ func Abs(a int32) int {
 	// 若 a是负数 那么 a ^ -1 = a按位取反  a - (-1) = a+1  所以结果就是 取反+1
 	return int(a ^ y - y)
 }
+
+func Swap(a, b *int) {
+
+	if *a != *b {
+		*a = *a ^ *b
+		*b = *a ^ *b
+		*a = *a ^ *b
+	}
+}
