@@ -1,6 +1,7 @@
 package list
 
 import (
+	"leecode/tools"
 	"testing"
 )
 
@@ -23,9 +24,9 @@ func TestAddTwoNumbers(t *testing.T) {
 
 }
 
-func addTwoNumbers2(l1 *ListNode, l2 *ListNode) *ListNode {
+func addTwoNumbers2(l1 *tools.ListNode, l2 *tools.ListNode) *tools.ListNode {
 
-	res := &ListNode{}
+	res := &tools.ListNode{}
 	sum := 0
 	p := res
 	n := 0
@@ -44,7 +45,7 @@ func addTwoNumbers2(l1 *ListNode, l2 *ListNode) *ListNode {
 		}
 
 		sum, n = getNodeSum(firstV, secondV, n)
-		tmp := &ListNode{Val: sum}
+		tmp := &tools.ListNode{Val: sum}
 
 		p.Next = tmp
 		p = p.Next
@@ -55,9 +56,9 @@ func addTwoNumbers2(l1 *ListNode, l2 *ListNode) *ListNode {
 
 }
 
-func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+func addTwoNumbers(l1 *tools.ListNode, l2 *tools.ListNode) *tools.ListNode {
 
-	res := &ListNode{}
+	res := &tools.ListNode{}
 	p := res
 	cur := 0
 	n := 0
@@ -65,7 +66,7 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 
 		cur, n = getNodeSum(l1.Val, l2.Val, n)
 
-		tmp := &ListNode{
+		tmp := &tools.ListNode{
 			Val:  cur,
 			Next: nil,
 		}
@@ -80,7 +81,7 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	for l1 != nil {
 
 		cur, n = getNodeSum(l1.Val, n, 0)
-		tmp := &ListNode{
+		tmp := &tools.ListNode{
 			Val:  cur,
 			Next: nil,
 		}
@@ -92,7 +93,7 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	for l2 != nil {
 		cur, n = getNodeSum(l2.Val, n, 0)
 
-		tmp := &ListNode{
+		tmp := &tools.ListNode{
 			Val:  cur,
 			Next: nil,
 		}
@@ -105,7 +106,7 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	for n > 0 {
 		cur, n = getNodeSum(0, n, 0)
 
-		tmp := &ListNode{
+		tmp := &tools.ListNode{
 			Val:  cur,
 			Next: nil,
 		}

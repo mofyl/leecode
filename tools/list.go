@@ -1,19 +1,10 @@
-package list
+package tools
 
 import "fmt"
 
 type ListNode struct {
 	Val  int
 	Next *ListNode
-}
-
-func AddToEnd(l *ListNode, val int) {
-	tmp := &ListNode{
-		Val:  val,
-		Next: nil,
-	}
-
-	l.Next = tmp
 }
 
 func AddNode(l *ListNode, val int) {

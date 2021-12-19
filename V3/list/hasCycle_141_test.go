@@ -2,6 +2,7 @@ package list
 
 import (
 	"fmt"
+	"leecode/tools"
 	"testing"
 )
 
@@ -14,8 +15,8 @@ func TestHasCycle(t *testing.T) {
 	//	AddNode(head, 4)
 	//	fmt.Println(hasCycle(head))
 
-	l1 := &ListNode{Val: 1}
-	l2 := &ListNode{Val: 2}
+	l1 := &tools.ListNode{Val: 1}
+	l2 := &tools.ListNode{Val: 2}
 	//l3 := &ListNode{Val: 3}
 	//l4 := &ListNode{Val: 4}
 	//
@@ -29,7 +30,7 @@ func TestHasCycle(t *testing.T) {
 
 }
 
-func hasCycle(head *ListNode) bool {
+func hasCycle(head *tools.ListNode) bool {
 
 	if head == nil {
 		return false

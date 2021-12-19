@@ -1,27 +1,28 @@
 package list
 
 import (
+	"leecode/tools"
 	"testing"
 )
 
 func TestSortList(t *testing.T) {
-	head := &ListNode{}
-	AddNode(head, 4)
-	AddNode(head, 2)
-	AddNode(head, 1)
-	AddNode(head, 3)
+	head := &tools.ListNode{}
+	tools.AddNode(head, 4)
+	tools.AddNode(head, 2)
+	tools.AddNode(head, 1)
+	tools.AddNode(head, 3)
 
 	//res := sortList(head.Next)
 	res := sortList_V2(head.Next)
 
-	PrintNode(res)
+	tools.PrintNode(res)
 }
 
 // 该算法要求使用 O( nlog(n) )
 // O( nlog(n) ) 排序有 归并 堆排序 快速排序
 // 这里要求使用 常数空间 所以不能使用 递归 快排就排除了。
 // 这里是 递归版的 归并 是 由顶到底 的方式 , 还可以由 底 到 顶
-func sortList(head *ListNode) *ListNode {
+func sortList(head *tools.ListNode) *tools.ListNode {
 
 	if head == nil || head.Next == nil {
 		return head
@@ -42,7 +43,7 @@ func sortList(head *ListNode) *ListNode {
 	right := sortList(tmp)
 
 	// 合并 将 left 和 right 合并为有序链表
-	newHead := &ListNode{}
+	newHead := &tools.ListNode{}
 	p := newHead
 	for left != nil && right != nil {
 		if left.Val <= right.Val {
@@ -55,7 +56,7 @@ func sortList(head *ListNode) *ListNode {
 		p = p.Next
 	}
 
-	var afterNode *ListNode
+	var afterNode *tools.ListNode
 
 	if left != nil {
 		afterNode = left
@@ -68,7 +69,7 @@ func sortList(head *ListNode) *ListNode {
 	return newHead.Next
 }
 
-func sortList_V2(head *ListNode) *ListNode {
+func sortList_V2(head *tools.ListNode) *tools.ListNode {
 
 	if head == nil || head.Next == nil {
 		return head
@@ -83,7 +84,7 @@ func sortList_V2(head *ListNode) *ListNode {
 	}
 
 	// 由于要改第一个，所以增加一个newHead
-	newHead := &ListNode{}
+	newHead := &tools.ListNode{}
 	newHead.Next = head
 	// 这里将head分割为 1,2,4,6,8
 	for invt := 1; invt < length; invt *= 2 {
@@ -110,9 +111,9 @@ func sortList_V2(head *ListNode) *ListNode {
 	return newHead.Next
 }
 
-func merge_148(h1, h2 *ListNode) *ListNode {
+func merge_148(h1, h2 *tools.ListNode) *tools.ListNode {
 
-	newHead := &ListNode{}
+	newHead := &tools.ListNode{}
 	p := newHead
 	for h1 != nil && h2 != nil {
 
@@ -135,7 +136,7 @@ func merge_148(h1, h2 *ListNode) *ListNode {
 }
 
 // 返回 start 后 invt步的节点，并将 这两部分 分割
-func getHead(start *ListNode, invt int) *ListNode {
+func getHead(start *tools.ListNode, invt int) *tools.ListNode {
 	if start == nil {
 		return start
 	}

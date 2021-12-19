@@ -1,23 +1,24 @@
 package list
 
 import (
+	"leecode/tools"
 	"testing"
 )
 
 func TestReverseKGroup(t *testing.T) {
-	p := &ListNode{}
-	AddNode(p, 1)
-	AddNode(p, 2)
-	AddNode(p, 3)
-	AddNode(p, 4)
+	p := &tools.ListNode{}
+	tools.AddNode(p, 1)
+	tools.AddNode(p, 2)
+	tools.AddNode(p, 3)
+	tools.AddNode(p, 4)
 
 	//res := reverseKGroup(p.Next, 1)
 	res := reverseKGroup_V2(p.Next, 2)
 
-	PrintNode(res)
+	tools.PrintNode(res)
 }
 
-func reverseKGroup(head *ListNode, k int) *ListNode {
+func reverseKGroup(head *tools.ListNode, k int) *tools.ListNode {
 
 	if head == nil || k <= 1 {
 		return head
@@ -39,7 +40,7 @@ func reverseKGroup(head *ListNode, k int) *ListNode {
 
 	count := 1
 
-	newHead := &ListNode{}
+	newHead := &tools.ListNode{}
 	newHead.Next = head
 
 	prev := newHead
@@ -74,13 +75,13 @@ func reverseKGroup(head *ListNode, k int) *ListNode {
 	return newHead.Next
 }
 
-func reverseKGroup_V2(head *ListNode, k int) *ListNode {
+func reverseKGroup_V2(head *tools.ListNode, k int) *tools.ListNode {
 
 	if head == nil || k <= 1 {
 		return head
 	}
 
-	newHead := &ListNode{}
+	newHead := &tools.ListNode{}
 	newHead.Next = head
 
 	prev := newHead
@@ -115,9 +116,9 @@ func reverseKGroup_V2(head *ListNode, k int) *ListNode {
 	return newHead.Next
 }
 
-func reverse(head *ListNode) *ListNode {
+func reverse(head *tools.ListNode) *tools.ListNode {
 
-	var prev *ListNode
+	var prev *tools.ListNode
 	cur := head
 	for cur != nil {
 		next := cur.Next

@@ -1,24 +1,25 @@
 package list
 
 import (
+	"leecode/tools"
 	"testing"
 )
 
 func TestRotateRight(t *testing.T) {
-	p := &ListNode{}
+	p := &tools.ListNode{}
 
-	AddNode(p, 1)
-	AddNode(p, 2)
-	AddNode(p, 3)
+	tools.AddNode(p, 1)
+	tools.AddNode(p, 2)
+	tools.AddNode(p, 3)
 	//AddNode(p, 4)
 	//AddNode(p, 5)
 
 	res := rotateRight(p.Next, 3)
 
-	PrintNode(res)
+	tools.PrintNode(res)
 }
 
-func rotateRight(head *ListNode, k int) *ListNode {
+func rotateRight(head *tools.ListNode, k int) *tools.ListNode {
 
 	if head == nil || k < 1 {
 		return head
@@ -39,7 +40,7 @@ func rotateRight(head *ListNode, k int) *ListNode {
 		return head
 	}
 
-	newHead := &ListNode{}
+	newHead := &tools.ListNode{}
 
 	p := head
 	num := listLen - step

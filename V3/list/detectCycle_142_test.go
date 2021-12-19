@@ -2,15 +2,16 @@ package list
 
 import (
 	"fmt"
+	"leecode/tools"
 	"testing"
 )
 
 func TestDetectCycle(t *testing.T) {
 
-	l1 := &ListNode{Val: 1}
-	l2 := &ListNode{Val: 2}
-	l3 := &ListNode{Val: 3}
-	l4 := &ListNode{Val: 4}
+	l1 := &tools.ListNode{Val: 1}
+	l2 := &tools.ListNode{Val: 2}
+	l3 := &tools.ListNode{Val: 3}
+	l4 := &tools.ListNode{Val: 4}
 
 	l1.Next = l2
 	l2.Next = l3
@@ -24,7 +25,7 @@ func TestDetectCycle(t *testing.T) {
 
 }
 
-func detectCycle(head *ListNode) *ListNode {
+func detectCycle(head *tools.ListNode) *tools.ListNode {
 
 	if head == nil {
 		return head

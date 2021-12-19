@@ -2,35 +2,36 @@ package list
 
 import (
 	"fmt"
+	"leecode/tools"
 	"testing"
 )
 
 func TestSplitListToParts(t *testing.T) {
 
-	head := &ListNode{}
-	AddNode(head, 1)
-	AddNode(head, 2)
-	AddNode(head, 3)
-	AddNode(head, 4)
-	AddNode(head, 5)
-	AddNode(head, 6)
-	AddNode(head, 7)
-	AddNode(head, 8)
-	AddNode(head, 9)
-	AddNode(head, 10)
+	head := &tools.ListNode{}
+	tools.AddNode(head, 1)
+	tools.AddNode(head, 2)
+	tools.AddNode(head, 3)
+	tools.AddNode(head, 4)
+	tools.AddNode(head, 5)
+	tools.AddNode(head, 6)
+	tools.AddNode(head, 7)
+	tools.AddNode(head, 8)
+	tools.AddNode(head, 9)
+	tools.AddNode(head, 10)
 
 	k := 3
 
 	res := splitListToParts(head.Next, k)
 	fmt.Println(len(res))
 	for i := 0; i < len(res); i++ {
-		PrintNode(res[i])
+		tools.PrintNode(res[i])
 		fmt.Println("===============")
 	}
 
 }
 
-func splitListToParts(root *ListNode, k int) []*ListNode {
+func splitListToParts(root *tools.ListNode, k int) []*tools.ListNode {
 
 	if k == 0 {
 		return nil
@@ -50,7 +51,7 @@ func splitListToParts(root *ListNode, k int) []*ListNode {
 	// 若有余数，那么每个位置分担1个 直到mod 为0
 	mod := length % k
 
-	res := make([]*ListNode, k)
+	res := make([]*tools.ListNode, k)
 	cur := root
 	for i := 0; i < k; i++ {
 		count := avg

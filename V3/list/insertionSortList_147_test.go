@@ -1,21 +1,24 @@
 package list
 
-import "testing"
+import (
+	"leecode/tools"
+	"testing"
+)
 
 func TestInsertionSortList(t *testing.T) {
-	head := &ListNode{}
-	AddNode(head, -1)
-	AddNode(head, 5)
-	AddNode(head, 3)
-	AddNode(head, 4)
-	AddNode(head, 0)
+	head := &tools.ListNode{}
+	tools.AddNode(head, -1)
+	tools.AddNode(head, 5)
+	tools.AddNode(head, 3)
+	tools.AddNode(head, 4)
+	tools.AddNode(head, 0)
 
 	res := insertionSortList(head.Next)
 
-	PrintNode(res)
+	tools.PrintNode(res)
 }
 
-func insertionSortList(head *ListNode) *ListNode {
+func insertionSortList(head *tools.ListNode) *tools.ListNode {
 
 	if head == nil || head.Next == nil {
 		return head
@@ -26,7 +29,7 @@ func insertionSortList(head *ListNode) *ListNode {
 		移动之前需要将 q先从链表中删除，这样可以防止 一些别的问题 删除后 然后在遍历已排序的序列，找到q的位置
 	*/
 
-	newHead := &ListNode{}
+	newHead := &tools.ListNode{}
 	newHead.Next = head
 
 	cur := head

@@ -1,24 +1,27 @@
 package list
 
-import "testing"
+import (
+	"leecode/tools"
+	"testing"
+)
 
 func TestMergeKLists(t *testing.T) {
 
-	lists := make([]*ListNode, 0, 10)
+	lists := make([]*tools.ListNode, 0, 10)
 
-	l1 := &ListNode{}
-	AddNode(l1, 1)
-	AddNode(l1, 4)
-	AddNode(l1, 5)
+	l1 := &tools.ListNode{}
+	tools.AddNode(l1, 1)
+	tools.AddNode(l1, 4)
+	tools.AddNode(l1, 5)
 	//
-	l2 := &ListNode{}
-	AddNode(l2, 1)
-	AddNode(l2, 3)
-	AddNode(l2, 4)
+	l2 := &tools.ListNode{}
+	tools.AddNode(l2, 1)
+	tools.AddNode(l2, 3)
+	tools.AddNode(l2, 4)
 
-	l3 := &ListNode{}
-	AddNode(l3, 2)
-	AddNode(l3, 6)
+	l3 := &tools.ListNode{}
+	tools.AddNode(l3, 2)
+	tools.AddNode(l3, 6)
 
 	lists = append(lists, l1.Next, l2.Next, l3.Next)
 
@@ -27,11 +30,11 @@ func TestMergeKLists(t *testing.T) {
 	//res := mergeKLists(lists)
 	res := mergeKListsV2(lists)
 
-	PrintNode(res)
+	tools.PrintNode(res)
 
 }
 
-func mergeKLists(lists []*ListNode) *ListNode {
+func mergeKLists(lists []*tools.ListNode) *tools.ListNode {
 	// 先合并两个 剩余的都和之前的做比较
 	if len(lists) < 1 {
 		return nil
@@ -41,7 +44,7 @@ func mergeKLists(lists []*ListNode) *ListNode {
 		return lists[0]
 	}
 
-	res := &ListNode{}
+	res := &tools.ListNode{}
 
 	tmp := mergeTwoLists(lists[0], lists[1])
 	if tmp == nil {
@@ -58,11 +61,11 @@ func mergeKLists(lists []*ListNode) *ListNode {
 	return res.Next
 }
 
-func mergeKListsV2(lists []*ListNode) *ListNode {
+func mergeKListsV2(lists []*tools.ListNode) *tools.ListNode {
 	return merge(lists, 0, len(lists)-1)
 }
 
-func merge(list []*ListNode, l, r int) *ListNode {
+func merge(list []*tools.ListNode, l, r int) *tools.ListNode {
 	if l == r {
 		return list[l]
 	}

@@ -1,11 +1,14 @@
 package list
 
-import "testing"
+import (
+	"leecode/tools"
+	"testing"
+)
 
 func TestRemoveNthFromEnd(t *testing.T) {
-	head := &ListNode{}
+	head := &tools.ListNode{}
 
-	AddNode(head, 1)
+	tools.AddNode(head, 1)
 	//AddNode(head, 2)
 	//AddNode(head, 3)
 	//AddNode(head, 4)
@@ -14,17 +17,17 @@ func TestRemoveNthFromEnd(t *testing.T) {
 	n := 1
 
 	l := removeNthFromEnd(head.Next, n)
-	PrintNode(l)
+	tools.PrintNode(l)
 }
 
-func removeNthFromEnd(head *ListNode, n int) *ListNode {
+func removeNthFromEnd(head *tools.ListNode, n int) *tools.ListNode {
 
 	// head 为 nil
 	if head == nil {
 		return head
 	}
 
-	h := &ListNode{
+	h := &tools.ListNode{
 		Next: head,
 	}
 

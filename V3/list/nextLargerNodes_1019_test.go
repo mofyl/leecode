@@ -2,14 +2,15 @@ package list
 
 import (
 	"fmt"
+	"leecode/tools"
 	"testing"
 )
 
 func TestNextLargerNodes(t *testing.T) {
-	head := &ListNode{}
-	AddNode(head, 2)
-	AddNode(head, 1)
-	AddNode(head, 5)
+	head := &tools.ListNode{}
+	tools.AddNode(head, 2)
+	tools.AddNode(head, 1)
+	tools.AddNode(head, 5)
 	//AddNode(head, 3)
 	//AddNode(head, 5)
 
@@ -17,7 +18,7 @@ func TestNextLargerNodes(t *testing.T) {
 	fmt.Println(res)
 }
 
-func nextLargerNodes(head *ListNode) []int {
+func nextLargerNodes(head *tools.ListNode) []int {
 
 	if head == nil {
 		return nil
@@ -42,7 +43,7 @@ func nextLargerNodes(head *ListNode) []int {
 	return res
 }
 
-func findNextHuge(head *ListNode) int {
+func findNextHuge(head *tools.ListNode) int {
 
 	p := head.Next
 	val := head.Val
@@ -57,7 +58,7 @@ func findNextHuge(head *ListNode) int {
 	return 0
 }
 
-func nextLargerNodes_v2(head *ListNode) []int {
+func nextLargerNodes_v2(head *tools.ListNode) []int {
 	if head == nil {
 		return nil
 	}

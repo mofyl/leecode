@@ -1,22 +1,23 @@
 package list
 
 import (
+	"leecode/tools"
 	"testing"
 )
 
 func TestReorderList(t *testing.T) {
-	head := &ListNode{}
-	AddNode(head, 1)
-	AddNode(head, 2)
-	AddNode(head, 3)
-	AddNode(head, 4)
+	head := &tools.ListNode{}
+	tools.AddNode(head, 1)
+	tools.AddNode(head, 2)
+	tools.AddNode(head, 3)
+	tools.AddNode(head, 4)
 
 	reorderList(head.Next)
 
-	PrintNode(head.Next)
+	tools.PrintNode(head.Next)
 }
 
-func reorderList(head *ListNode) {
+func reorderList(head *tools.ListNode) {
 
 	if head == nil || head.Next == nil {
 		return
@@ -50,9 +51,9 @@ func reorderList(head *ListNode) {
 	}
 }
 
-func reverse_143(head *ListNode) *ListNode {
+func reverse_143(head *tools.ListNode) *tools.ListNode {
 
-	var prev *ListNode
+	var prev *tools.ListNode
 	cur := head
 
 	for cur != nil {

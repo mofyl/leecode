@@ -2,15 +2,16 @@ package list
 
 import (
 	"fmt"
+	"leecode/tools"
 	"testing"
 )
 
 func TestIsPalindrome(t *testing.T) {
 
-	head := &ListNode{}
-	AddNode(head, 1)
-	AddNode(head, 3)
-	AddNode(head, 1)
+	head := &tools.ListNode{}
+	tools.AddNode(head, 1)
+	tools.AddNode(head, 3)
+	tools.AddNode(head, 1)
 	//AddNode(head, 2)
 	//AddNode(head, 1)
 
@@ -18,7 +19,7 @@ func TestIsPalindrome(t *testing.T) {
 
 }
 
-func isPalindrome(head *ListNode) bool {
+func isPalindrome(head *tools.ListNode) bool {
 
 	if head == nil || head.Next == nil {
 		return true
@@ -36,7 +37,7 @@ func isPalindrome(head *ListNode) bool {
 	slow.Next = nil
 
 	// 倒转 next
-	var prev *ListNode
+	var prev *tools.ListNode
 	cur := h2
 
 	for cur != nil {

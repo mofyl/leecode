@@ -1,27 +1,30 @@
 package list
 
-import "testing"
+import (
+	"leecode/tools"
+	"testing"
+)
 
 func TestReverseBetween(t *testing.T) {
-	head := &ListNode{}
-	AddNode(head, 1)
-	AddNode(head, 2)
-	AddNode(head, 3)
-	AddNode(head, 4)
-	AddNode(head, 5)
+	head := &tools.ListNode{}
+	tools.AddNode(head, 1)
+	tools.AddNode(head, 2)
+	tools.AddNode(head, 3)
+	tools.AddNode(head, 4)
+	tools.AddNode(head, 5)
 	m, n := 1, 2
 
 	res := reverseBetween(head.Next, m, n)
 
-	PrintNode(res)
+	tools.PrintNode(res)
 }
 
-func reverseBetween(head *ListNode, m int, n int) *ListNode {
+func reverseBetween(head *tools.ListNode, m int, n int) *tools.ListNode {
 	if head == nil || m == n {
 		return head
 	}
 
-	prev := &ListNode{}
+	prev := &tools.ListNode{}
 	prev.Next = head
 	prevP := prev
 	cur := head
@@ -33,9 +36,9 @@ func reverseBetween(head *ListNode, m int, n int) *ListNode {
 
 		if count == m {
 			// 当count == n 的时候 before 指向 反转串的最后一个
-			var before *ListNode
+			var before *tools.ListNode
 			p := cur
-			var next *ListNode
+			var next *tools.ListNode
 			// 这里一定要是等于
 			for count <= n {
 				next = p.Next

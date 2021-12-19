@@ -1,22 +1,25 @@
 package list
 
-import "testing"
+import (
+	"leecode/tools"
+	"testing"
+)
 
 func TestMiddleNode(t *testing.T) {
 
-	head := &ListNode{}
-	AddNode(head, 1)
-	AddNode(head, 2)
-	AddNode(head, 3)
-	AddNode(head, 4)
+	head := &tools.ListNode{}
+	tools.AddNode(head, 1)
+	tools.AddNode(head, 2)
+	tools.AddNode(head, 3)
+	tools.AddNode(head, 4)
 	//AddNode(head, 5)
 
 	res := middleNode(head.Next)
 
-	PrintNode(res)
+	tools.PrintNode(res)
 }
 
-func middleNode(head *ListNode) *ListNode {
+func middleNode(head *tools.ListNode) *tools.ListNode {
 
 	if head == nil || head.Next == nil {
 		return head

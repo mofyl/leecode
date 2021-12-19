@@ -1,30 +1,31 @@
 package list
 
 import (
+	"leecode/tools"
 	"testing"
 )
 
 func TestSwapPairs(t *testing.T) {
 
-	p := &ListNode{}
-	AddNode(p, 1)
-	AddNode(p, 2)
-	AddNode(p, 3)
+	p := &tools.ListNode{}
+	tools.AddNode(p, 1)
+	tools.AddNode(p, 2)
+	tools.AddNode(p, 3)
 	//AddNode(p, 4)
 
 	//res := swapPairs(p.Next)
 	res := swapPairs_V2(p.Next)
 
-	PrintNode(res)
+	tools.PrintNode(res)
 }
 
-func swapPairs(head *ListNode) *ListNode {
+func swapPairs(head *tools.ListNode) *tools.ListNode {
 
 	if head == nil {
 		return nil
 	}
 
-	newHead := &ListNode{
+	newHead := &tools.ListNode{
 		Next: head,
 	}
 	p := newHead
@@ -45,20 +46,20 @@ func swapPairs(head *ListNode) *ListNode {
 	return newHead.Next
 }
 
-func swapPairs_V2(head *ListNode) *ListNode {
+func swapPairs_V2(head *tools.ListNode) *tools.ListNode {
 
 	if head == nil {
 		return nil
 	}
 
-	newHead := &ListNode{
+	newHead := &tools.ListNode{
 		Next: head,
 	}
 	// pre 指向 cur的前一个
 	pre := newHead
 	// cur 指向 待交换的 第一个元素
 	first := pre.Next
-	var second *ListNode
+	var second *tools.ListNode
 	for first != nil && first.Next != nil {
 
 		second = first.Next

@@ -1,11 +1,14 @@
 package list
 
-import "testing"
+import (
+	"leecode/tools"
+	"testing"
+)
 
 func TestPartition(t *testing.T) {
-	head := &ListNode{}
+	head := &tools.ListNode{}
 
-	AddNode(head, 1)
+	tools.AddNode(head, 1)
 	//AddNode(head, 4)
 	//AddNode(head, 3)
 	//AddNode(head, 2)
@@ -17,18 +20,18 @@ func TestPartition(t *testing.T) {
 
 	res := partition(head.Next, k)
 
-	PrintNode(res)
+	tools.PrintNode(res)
 }
 
-func partition(head *ListNode, x int) *ListNode {
+func partition(head *tools.ListNode, x int) *tools.ListNode {
 
 	if head == nil {
 		return head
 	}
 
-	lessHead := &ListNode{}
+	lessHead := &tools.ListNode{}
 	lessP := lessHead
-	hugeHead := &ListNode{}
+	hugeHead := &tools.ListNode{}
 	hugeP := hugeHead
 
 	p := head
@@ -45,7 +48,7 @@ func partition(head *ListNode, x int) *ListNode {
 		p = p.Next
 	}
 
-	newHead := &ListNode{}
+	newHead := &tools.ListNode{}
 	lessP.Next = hugeHead.Next
 	newHead.Next = lessHead.Next
 	hugeP.Next = nil

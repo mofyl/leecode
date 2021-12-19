@@ -1,30 +1,31 @@
 package list
 
 import (
+	"leecode/tools"
 	"testing"
 )
 
 func TestDeleteDuplicates_V2(t *testing.T) {
-	p := &ListNode{}
-	AddNode(p, 1)
-	AddNode(p, 1)
-	AddNode(p, 1)
-	AddNode(p, 2)
-	AddNode(p, 3)
+	p := &tools.ListNode{}
+	tools.AddNode(p, 1)
+	tools.AddNode(p, 1)
+	tools.AddNode(p, 1)
+	tools.AddNode(p, 2)
+	tools.AddNode(p, 3)
 	//AddNode(p, 3)
 
 	res := deleteDuplicates_V2(p.Next)
 
-	PrintNode(res)
+	tools.PrintNode(res)
 }
 
-func deleteDuplicates_V2(head *ListNode) *ListNode {
+func deleteDuplicates_V2(head *tools.ListNode) *tools.ListNode {
 
 	if head == nil || head.Next == nil {
 		return head
 	}
 
-	newHead := &ListNode{
+	newHead := &tools.ListNode{
 		Next: head,
 	}
 
