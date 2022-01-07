@@ -24,6 +24,13 @@ func Abs(a int32) int {
 	return int(a ^ y - y)
 }
 
+func Abs_(a int) int {
+	if a < 0 {
+		return -a
+	}
+	return a
+}
+
 func Swap(a, b *int) {
 
 	if *a != *b {
