@@ -8,8 +8,8 @@ import (
 
 func TestMaxProfit123(t *testing.T) {
 
-	//prices := []int{3, 3, 5, 0, 0, 3, 1, 4}
-	prices := []int{1, 2, 3, 4, 5}
+	prices := []int{3, 3, 5, 0, 0, 3, 1, 4}
+	// prices := []int{1, 2, 3, 4, 5}
 
 	res := maxProfit123(prices)
 	fmt.Println(res)
