@@ -13,9 +13,51 @@ func TestSortList(t *testing.T) {
 	tools.AddNode(head, 3)
 
 	//res := sortList(head.Next)
-	res := sortList_V2(head.Next)
+	//res := sortList_V2(head.Next)
 
-	tools.PrintNode(res)
+	Quick(head.Next, nil)
+
+	tools.PrintNode(head.Next)
+}
+
+func Quick(l *tools.ListNode, r *tools.ListNode) {
+
+	if l != r {
+		mid := QuickHelper(l, r)
+		QuickHelper(l, mid)
+		QuickHelper(mid.Next, r)
+	}
+}
+
+func QuickHelper(l *tools.ListNode, r *tools.ListNode) *tools.ListNode {
+
+	if l == r {
+		return l
+	}
+
+	val := l.Val
+
+	// cur 指向的是 val 最后的位置
+	/*
+		cur 和 next 之间的节点都是 > val 的，若后面有 < val 的 则取一个大于的 进行交换即可
+		若有 小于的都会在 cur之前。
+	*/
+	cur := l
+	next := cur.Next
+
+	for next != r {
+
+		if next.Val < val {
+			cur = cur.Next
+			cur.Val, next.Val = next.Val, cur.Val
+		}
+		next = next.Next
+	}
+	// 找到了val 的位置 ，进行交换
+	cur.Val, l.Val = l.Val, cur.Val
+	// 返回找到的位置
+	return cur
+
 }
 
 // 该算法要求使用 O( nlog(n) )
